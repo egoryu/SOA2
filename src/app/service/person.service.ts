@@ -4,7 +4,7 @@ import {Color, Country, PersonModel, PersonRequestModel} from "../model/person.m
 import {person, SERVER_PEOPLE_URL} from "../consts";
 import {share} from "rxjs/operators";
 import {Observable, of} from "rxjs";
-import {CountResponseModel} from "../model/response.model";
+import {CountResponseModel, PeopleResponseModel} from "../model/response.model";
 
 @Injectable({
     providedIn: 'root'
@@ -19,18 +19,18 @@ export class PersonService {
         )
     }
 
-    public getPeople$(params: HttpParams): Observable<PersonModel[]> {
-        return of([person, person])
-        /*return this.http.get<PersonModel[]>(`${SERVER_PEOPLE_URL}`, {params}).pipe(
+    public getPeople$(params: HttpParams): Observable<PeopleResponseModel> {
+        //return of([person, person])
+        return this.http.get<PeopleResponseModel>(`${SERVER_PEOPLE_URL}`, {params}).pipe(
             share()
-        )*/
+        )
     }
 
     public getPerson$(id: number): Observable<PersonModel> {
-        return of(person);
-        /*return this.http.get<PersonModel>(`${SERVER_PEOPLE_URL}/${id}`).pipe(
+        //return of(person);
+        return this.http.get<PersonModel>(`${SERVER_PEOPLE_URL}/${id}`).pipe(
             share()
-        )*/
+        )
     }
 
     public putPerson$(id: string, person: PersonModel): Observable<unknown> {

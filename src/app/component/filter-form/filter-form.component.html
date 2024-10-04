@@ -1,0 +1,28 @@
+<h2>Filters</h2>
+<form class="filter-form" [formGroup]="filterForm">
+    <p-dropdown formControlName="param" optionLabel="name" [options]="filters" placeholder="Select filter"/>
+    <input type="text" pInputText formControlName="text" />
+    <p-dropdown formControlName="mode" optionLabel="name" [options]="modes" placeholder="Select filter mode"/>
+    <p-button label="Add" [disabled]="filterForm.invalid" (click)="clickAddFilter()"/>
+</form>
+
+<div class="tags">
+    @for (tag of filterTags; track tag) {
+        <p-chip [label]="tag" [removable]="true" (onRemove)="onRemoveFilterTag(tag)"></p-chip>
+    }
+</div>
+
+<h2>Sorting</h2>
+<form class="filter-form" [formGroup]="sortForm">
+    <p-dropdown formControlName="sortBy" optionLabel="name" [options]="filters" placeholder="Select filter"/>
+    <p-dropdown formControlName="order" optionLabel="name" [options]="order" placeholder="Select filter mode"/>
+    <p-button label="Add" [disabled]="sortForm.invalid" (click)="clickAddSort()"/>
+</form>
+
+<div class="tags">
+    @for (tag of sortTags; track tag) {
+        <p-chip [label]="tag" [removable]="true" (onRemove)="onRemoveSortTag(tag)"></p-chip>
+    }
+</div>
+
+<p-button label="Find person by filters and sorting" (click)="clickFind()" class="find-button"/>

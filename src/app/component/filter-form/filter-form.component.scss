@@ -1,0 +1,28 @@
+.filter-form {
+    margin-top: 15px;
+}
+
+.filter-form p-dropdown {
+    min-width: 20vw;
+    margin-left: 10px;
+}
+.filter-form input[type="text"] {
+    min-width: 40vw;
+    margin-left: 10px;
+}
+.filter-form p-button {
+    min-width: 20vw;
+    margin-left: 10px;
+}
+
+.tags {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.find-button {
+    margin-left: 25vw;
+}

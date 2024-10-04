@@ -1,6 +1,12 @@
-<div class="person-list">
-    @for (person of people; track person) {
-        <app-person [person]="person"></app-person>
-    }
+<div class="main-content">
+    <div>
+        <app-filter-form (changeFilter)="changeFilter($event)"/>
+    </div>
+    <hr class="p-divider-horizontal">
+    <div class="person-list">
+        @for (person of people; track person) {
+            <app-person [person]="person"></app-person>
+        }
+    </div>
 </div>
 

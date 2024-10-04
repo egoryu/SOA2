@@ -7,6 +7,7 @@ import { PersonReducer } from './store/reducer/person.reducer';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { PersonEffects } from './store/effect/person.effect';
+import {provideAnimations} from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes),
         provideHttpClient(),
         provideEffects([PersonEffects]),
+        provideAnimations(),
     ]
 };

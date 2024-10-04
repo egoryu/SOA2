@@ -1,29 +1,35 @@
 import { PersonModel } from "./person.model";
 
-export type SearchParams = Partial<PersonModel>;
 export type SortType = 'ASC' | 'DESC';
-
-export interface ILocationSort {
-    x?: SortType;
-    y?: SortType;
-    name?: SortType;
-}
-
-export interface ICoordinatesSort {
-    x?: SortType;
-    y?: SortType;
-}
 
 export interface SortParams {
     id?: SortType;
     creationDate?: SortType;
     name?: SortType;
-    coordinates?: ICoordinatesSort;
+    "coordinates.x"?: SortType;
+    "coordinates.y"?: SortType;
     height?: SortType;
     eyeColor?: SortType;
     hairColor?: SortType;
     nationality?: SortType;
-    location?: ILocationSort;
+    "location.name"?: SortType;
+    "location.x"?: SortType;
+    "location.y"?: SortType;
+}
+
+export interface SearchParams {
+    id?: string;
+    creationDate?: string;
+    name?: string;
+    "coordinates.x"?: string;
+    "coordinates.y"?: string;
+    height?: string;
+    eyeColor?: string;
+    hairColor?: string;
+    nationality?: string;
+    "location.name"?: string;
+    "location.x"?: string;
+    "location.y"?: string;
 }
 
 export interface FilterParams {

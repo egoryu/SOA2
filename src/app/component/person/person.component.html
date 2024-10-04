@@ -1,5 +1,5 @@
 <div class="person-info">
-    <h2 class="person-name">{{person?.name}}</h2>
+    <h2 class="person-name">{{person?.name}} ({{person?.id}})</h2>
     <h3 class="section-title">Person data</h3>
     <div class="info-item">
         <span class="label">Creation date:</span>
@@ -15,7 +15,7 @@
     </div>
     <div class="info-item">
         <span class="label">Height:</span>
-        <span class="value">{{person?.height || '&mdash;'}}</span>
+        <span class="value">{{person?.height}}</span>
     </div>
     <div class="info-item">
         <span class="label">Nationality:</span>
@@ -23,10 +23,10 @@
     </div>
     <div class="info-item">
         <span class="label">Person coordinates:</span>
-        <span class="value"> x - {{person?.coordinates?.x || 'no data'}}, y - {{person?.coordinates?.y || 'no data'}}</span>
+        <span class="value"> x - {{person?.coordinates?.x}}, y - {{person?.coordinates?.y}}</span>
     </div>
     <div class="info-item">
-        <span class="label">Location {{person?.location?.name || 'no data'}}:</span>
-        <span class="value"> x - {{person?.location?.x || 'no data'}}, y - {{person?.location?.y || 'no data'}}</span>
+        <span class="label">Location ({{person?.location?.name || 'no data'}}):</span>
+        <span class="value"> x - {{person?.location?.x}}, y - {{person?.location?.y}}</span>
     </div>
 </div>

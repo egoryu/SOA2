@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { PersonComponent } from './component/person/person.component';
 import {CommonModule} from '@angular/common';
 import {PersonListComponent} from './page/person-list/person-list.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-root',
