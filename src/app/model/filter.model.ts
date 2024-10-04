@@ -1,6 +1,6 @@
 import { PersonModel } from "./person.model";
 
-export type SerchParams = Partial<PersonModel>;
+export type SearchParams = Partial<PersonModel>;
 export type SortType = 'ASC' | 'DESC';
 
 export interface ILocationSort {
@@ -30,5 +30,5 @@ export interface FilterParams {
     offset: number;
     limit: number;
     sort?: SortParams;
-    filter?: SerchParams;
+    filter?: SearchParams;
 }

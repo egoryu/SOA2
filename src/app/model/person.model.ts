@@ -1,17 +1,17 @@
 export enum Color {
-    RED,
-    BLACK,
-    ORANGE,
-    BROWN,
-    BLUE
+    RED = 'RED',
+    BLACK = 'BLACK',
+    ORANGE = 'ORANGE',
+    BROWN = 'BROWN',
+    BLUE = 'BLUE'
 }
 
 export enum Country {
-    USA,
-    GERMANY,
-    CHINA,
-    VATICAN,
-    ITALY
+    USA = 'USA',
+    GERMANY = 'GERMANY',
+    CHINA = 'CHINA',
+    VATICAN = 'VATICAN',
+    ITALY = 'ITALY'
 }
 
 export interface ILocation {

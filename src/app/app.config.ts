@@ -10,7 +10,6 @@ import { PersonEffects } from './store/effect/person.effect';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
-
         provideStore({
             person: PersonReducer,
         }),

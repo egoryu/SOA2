@@ -1,7 +1,7 @@
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Color, Country, PersonModel, PersonRequestModel} from "../model/person.model";
-import {SERVER_PEOPLE_URL} from "../consts";
+import {person, SERVER_PEOPLE_URL} from "../consts";
 import {share} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {CountResponseModel} from "../model/response.model";
@@ -20,24 +20,13 @@ export class PersonService {
     }
 
     public getPeople$(params: HttpParams): Observable<PersonModel[]> {
-        return this.http.get<PersonModel[]>(`${SERVER_PEOPLE_URL}`, {params}).pipe(
+        return of([person, person])
+        /*return this.http.get<PersonModel[]>(`${SERVER_PEOPLE_URL}`, {params}).pipe(
             share()
-        )
+        )*/
     }
 
     public getPerson$(id: number): Observable<PersonModel> {
-        const person: PersonModel = {
-            id: id,
-            name: "John Doe",
-            coordinates: { x: 12.34, y: 56.78 },
-            height: 175,
-            eyeColor: Color.BLACK,
-            hairColor: Color.BLACK,
-            nationality: Country.GERMANY,
-            location: { x: 0, y: 0, name: 'kek' },
-            creationDate: ''
-        } as PersonModel;
-
         return of(person);
         /*return this.http.get<PersonModel>(`${SERVER_PEOPLE_URL}/${id}`).pipe(
             share()

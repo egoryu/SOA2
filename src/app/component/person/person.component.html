@@ -1,0 +1,32 @@
+<div class="person-info">
+    <h2 class="person-name">{{person?.name}}</h2>
+    <h3 class="section-title">Person data</h3>
+    <div class="info-item">
+        <span class="label">Creation date:</span>
+        <span class="value">{{person?.creationDate || '&mdash;'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="label">Eye color:</span>
+        <span class="value">{{person?.eyeColor || '&mdash;'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="label">Hair color:</span>
+        <span class="value">{{person?.hairColor || '&mdash;'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="label">Height:</span>
+        <span class="value">{{person?.height || '&mdash;'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="label">Nationality:</span>
+        <span class="value">{{person?.nationality || '&mdash;'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="label">Person coordinates:</span>
+        <span class="value"> x - {{person?.coordinates?.x || 'no data'}}, y - {{person?.coordinates?.y || 'no data'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="label">Location {{person?.location?.name || 'no data'}}:</span>
+        <span class="value"> x - {{person?.location?.x || 'no data'}}, y - {{person?.location?.y || 'no data'}}</span>
+    </div>
+</div>
