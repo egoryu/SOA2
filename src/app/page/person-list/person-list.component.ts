@@ -12,6 +12,10 @@ import {Button} from 'primeng/button';
 import {EditData, EditDialogComponent} from '../../component/edit-dialog/edit-dialog.component';
 import {noop} from 'rxjs';
 import {PersonStatisticComponent} from '../../component/person-statistic/person-statistic.component';
+import {MessageService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
+import {ErrorService} from '../../service/error.service';
+import {error} from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
     selector: 'app-person-list',
@@ -22,8 +26,10 @@ import {PersonStatisticComponent} from '../../component/person-statistic/person-
         PaginatorModule,
         Button,
         EditDialogComponent,
-        PersonStatisticComponent
+        PersonStatisticComponent,
+        ToastModule
     ],
+    providers: [MessageService],
     templateUrl: './person-list.component.html',
     styleUrl: './person-list.component.scss'
 })
@@ -36,12 +42,17 @@ export class PersonListComponent implements OnInit {
     private filters: FilterParams = {offset: 0, limit: 10};
 
     constructor(
-        private personService: PersonService
+        private personService: PersonService,
+        private messageService: MessageService,
+        private errorService: ErrorService
     ) {
     }
 
     public ngOnInit(): void {
         this.requestPeople();
+        this.errorService.errors.subscribe({
+            next: error => this.messageService.add({ severity: 'error', summary: 'Error', detail: error?.message, life: 7000 })
+        })
     }
 
     private requestPeople(): void {
