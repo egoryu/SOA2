@@ -1,12 +1,13 @@
 import {Component, EventEmitter, input, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {Color, Country, PersonModel} from '../../model/person.model';
-import {FormBuilder, FormControl, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 import {Button} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {Filter} from '../../model/filter.model';
 import {EnumService} from '../../service/enum.service';
+import {person} from '../../consts';
 
 export interface EditData {
     data: PersonModel,
@@ -58,18 +59,21 @@ export class EditDialogComponent implements OnChanges {
         if (changes['person']) {
             this.personForm = this.fb.group({
                 id: `${this.person?.id || ''}`,
-                name: `${this.person?.name || ''}`,
+                name: [`${this.person?.name || ''}`, [Validators.required]],
                 creationDate: `${this.person?.creationDate || '' }`,
-                eyeColor: new FormControl<Color>(this.person?.eyeColor || ''),
-                hairColor: new FormControl<Color>(this.person?.hairColor || ''),
-                height: `${this.person?.height === undefined ? '' : this.person?.height}`,
-                nationality: new FormControl<Country | undefined>(this.person?.nationality || undefined),
+                eyeColor: new FormControl<Color>(this.person?.eyeColor || '', [Validators.required]),
+                hairColor: new FormControl<Color>(this.person?.hairColor || '', [Validators.required]),
+                height: [`${this.person?.height === undefined ? '' : this.person?.height}`, [Validators.required]],
+                nationality: new FormControl<Country | undefined>(this.person?.nationality || undefined, [Validators.required]),
                 "coordinates.x": `${this.person?.coordinates.x === undefined ? '' : this.person?.coordinates.x}`,
                 "coordinates.y": `${this.person?.coordinates.y === undefined ? '' : this.person?.coordinates.y}`,
                 "location.name": `${this.person?.location?.name || ''}`,
                 "location.x": `${this.person?.location?.x === undefined ? '' : this.person?.location?.x}`,
                 "location.y": `${this.person?.location?.y === undefined ? '' : this.person?.location?.y}`,
             });
+
+            this.personForm.controls.id.disable();
+            this.personForm.controls.creationDate.disable();
         }
     }
 
@@ -94,5 +98,9 @@ export class EditDialogComponent implements OnChanges {
         }
 
         this.changeEditData.emit({data: personData, mode: mode});
+    }
+
+    public clickCancel(): void {
+        this.changeEditData.emit({data: person, mode: 0});
     }
 }

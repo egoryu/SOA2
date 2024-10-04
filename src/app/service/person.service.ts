@@ -51,9 +51,16 @@ export class PersonService {
         )
     }
 
-    public resolveOperation$(func: string, height: number): Observable<CountResponseModel> {
-        return this.http.get<CountResponseModel>(`${SERVER_PEOPLE_URL}/${func}/height`, {params: {height}}).pipe(
-            share()
-        )
+    public resolveOperation$(func: string, height?: number): Observable<CountResponseModel> {
+        if (height) {
+            return this.http.get<CountResponseModel>(`${SERVER_PEOPLE_URL}/${func}/height`, {params: {height}}).pipe(
+                share()
+            )
+        }
+        else {
+            return this.http.get<CountResponseModel>(`${SERVER_PEOPLE_URL}/${func}/height`).pipe(
+                share()
+            )
+        }
     }
 }

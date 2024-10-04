@@ -1,0 +1,24 @@
+<h2>Height-related statistics</h2>
+<form [formGroup]="heightForm">
+    <p-dropdown formControlName="mode" optionLabel="name" [options]="modes" placeholder="Select operation mode"/>
+    @if (heightForm.controls['mode'].value?.value === 'count') {
+        <input type="text" pInputText formControlName="height" />
+    }
+    <p-button label="Resolve" [disabled]="heightForm.invalid && heightForm.controls['mode'].value?.value === 'count'" (click)="clickResolveHeight()"/>
+    @if (result) {
+        <span>Result of resolve: {{result}}{{heightForm.controls['mode'].value?.value === 'count' ? 'чел.' : ''}}</span>
+    }
+</form>
+
+<h2>Statistics related to demographics</h2>
+<form [formGroup]="demographyForm">
+    <p-dropdown formControlName="mode" optionLabel="name" [options]="demographyModes" placeholder="Select operation mode"/>
+    <p-dropdown formControlName="hairColor" [options]="colorEnum" optionLabel="name" placeholder="Select hair color"/>
+    @if (demographyForm.controls['mode'].value?.value === 'count') {
+        <p-dropdown formControlName="nationality" [options]="countryEnum" optionLabel="name" placeholder="Select nationality"/>
+    }
+    <p-button label="Resolve" [disabled]="(demographyForm.invalid && demographyForm.controls['mode'].value?.value === 'count') || (demographyForm.controls['hairColor'].invalid)" (click)="clickResolveDemography()"/>
+    @if (resultDemography) {
+        <span>Result of resolve: {{result}}{{demographyForm.controls['mode'].value?.value === 'count' ? 'чел.' : '%'}}</span>
+    }
+</form>

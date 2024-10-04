@@ -1,4 +1,4 @@
-<p-dialog header="Edit Person" [modal]="true" [(visible)]="visible">
+<p-dialog header="Edit Person" [modal]="true" [(visible)]="visible" (onHide)="clickCancel()">
 <form [formGroup]="personForm">
     @if (person) {
         <div class="row">
@@ -67,10 +67,10 @@
     <div class="buttons">
         <p-button label="Cancel" severity="secondary" (click)="clickUpdatePerson(0)"/>
         @if (!person) {
-            <p-button label="Save" (click)="clickUpdatePerson(1)"/>
+            <p-button label="Save" [disabled]="personForm.invalid" (click)="clickUpdatePerson(1)"/>
         } @else {
-            <p-button label="Delete" severity="danger" (click)="clickUpdatePerson(2)"/>
-            <p-button label="Update" severity="warning" (click)="clickUpdatePerson(3)"/>
+            <p-button label="Delete" severity="danger" [disabled]="personForm.invalid" (click)="clickUpdatePerson(2)"/>
+            <p-button label="Update" severity="warning" [disabled]="personForm.invalid" (click)="clickUpdatePerson(3)"/>
         }
     </div>
 </form>

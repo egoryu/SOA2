@@ -11,6 +11,7 @@ import {PaginatorModule, PaginatorState} from 'primeng/paginator';
 import {Button} from 'primeng/button';
 import {EditData, EditDialogComponent} from '../../component/edit-dialog/edit-dialog.component';
 import {noop} from 'rxjs';
+import {PersonStatisticComponent} from '../../component/person-statistic/person-statistic.component';
 
 @Component({
     selector: 'app-person-list',
@@ -20,7 +21,8 @@ import {noop} from 'rxjs';
         FilterFormComponent,
         PaginatorModule,
         Button,
-        EditDialogComponent
+        EditDialogComponent,
+        PersonStatisticComponent
     ],
     templateUrl: './person-list.component.html',
     styleUrl: './person-list.component.scss'
@@ -105,7 +107,10 @@ export class PersonListComponent implements OnInit {
                 this.personService.deletePerson$(data.data.id).subscribe(noop);
                 return;
             case 3:
-                this.personService.putPerson$(data.data.id, data.data).subscribe(noop);
+                if (!data.data.location || !data.data.location.x || !data.data.location.y || !data.data.location.name || !data.data.coordinates.x || !data.data.coordinates.y)
+                    this.personService.patchPerson$(data.data.id, data.data).subscribe(noop);
+                else
+                    this.personService.putPerson$(data.data.id, data.data).subscribe(noop);
                 return;
         }
     }

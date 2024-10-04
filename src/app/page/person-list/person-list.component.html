@@ -17,6 +17,9 @@
         [rowsPerPageOptions]="[10, 20, 30]"
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"/>
+
+    <hr class="p-divider-horizontal">
+    <app-person-statistic/>
 </div>
 
 <app-edit-dialog [person]="person!" [visible]="visible" (changeEditData)="changeEditData($event)"/>
