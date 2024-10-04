@@ -2,6 +2,11 @@ import { PersonModel } from "./person.model";
 
 export type SortType = 'ASC' | 'DESC';
 
+export interface Filter {
+    name: string,
+    value: string
+}
+
 export interface SortParams {
     id?: SortType;
     creationDate?: SortType;

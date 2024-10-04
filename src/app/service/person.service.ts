@@ -33,19 +33,19 @@ export class PersonService {
         )
     }
 
-    public putPerson$(id: string, person: PersonModel): Observable<unknown> {
+    public putPerson$(id: number, person: PersonModel): Observable<unknown> {
         return this.http.put(`${SERVER_PEOPLE_URL}/${id}`, person).pipe(
             share()
         )
     }
 
-    public patchPerson$(id: string, person: PersonModel): Observable<unknown> {
+    public patchPerson$(id: number, person: PersonModel): Observable<unknown> {
         return this.http.patch(`${SERVER_PEOPLE_URL}/${id}`, person).pipe(
             share()
         )
     }
 
-    public deletePerson$(id: string): Observable<unknown> {
+    public deletePerson$(id: number): Observable<unknown> {
         return this.http.delete(`${SERVER_PEOPLE_URL}/${id}`).pipe(
             share()
         )

@@ -1,0 +1,77 @@
+<p-dialog header="Edit Person" [modal]="true" [(visible)]="visible">
+<form [formGroup]="personForm">
+    @if (person) {
+        <div class="row">
+            <label for="id">Id:</label>
+            <input pInputText type="text" id="id" [disabled]="true" formControlName="id">
+        </div>
+    }
+
+    <div class="row">
+        <label for="name">Name:</label>
+        <input pInputText type="text" id="name" formControlName="name">
+    </div>
+
+    @if (person) {
+        <div class="row">
+            <label for="creationDate">CreationDate:</label>
+            <input pInputText type="text" id="creationDate" [disabled]="true" formControlName="creationDate">
+        </div>
+    }
+
+    <div class="row">
+        <label for="eyeColor">Eye color:</label>
+        <p-dropdown id="eyeColor" formControlName="eyeColor" [options]="colorEnum" optionLabel="name" placeholder="Select eye color"/>
+    </div>
+
+    <div class="row">
+        <label for="hairColor">Hair color:</label>
+        <p-dropdown id="hairColor" formControlName="hairColor" [options]="colorEnum" optionLabel="name" placeholder="Select hair color"/>
+    </div>
+
+    <div class="row">
+        <label for="height">Height:</label>
+        <input pInputText type="text" id="height" formControlName="height">
+    </div>
+
+    <div class="row">
+        <label for="nationality">Nationality:</label>
+        <p-dropdown id="nationality" formControlName="nationality" [options]="countryEnum" optionLabel="name" placeholder="Select nationality"/>
+    </div>
+
+    <div class="row">
+        <label for="coordinates.x">Coordinates - x:</label>
+        <input pInputText type="text" id="coordinates.x" formControlName="coordinates.x">
+    </div>
+
+    <div class="row">
+        <label for="coordinates.y">Coordinates - y:</label>
+        <input pInputText type="text" id="coordinates.y" formControlName="coordinates.y">
+    </div>
+
+    <div class="row">
+        <label for="location.name">Location - name:</label>
+        <input pInputText type="text" id="location.name" formControlName="location.name">
+    </div>
+
+    <div class="row">
+        <label for="location.x">Location - x:</label>
+        <input pInputText type="text" id="location.x" formControlName="location.x">
+    </div>
+
+    <div class="row">
+        <label for="location.y">Location - y:</label>
+        <input pInputText type="text" id="location.y" formControlName="location.y">
+    </div>
+
+    <div class="buttons">
+        <p-button label="Cancel" severity="secondary" (click)="clickUpdatePerson(0)"/>
+        @if (!person) {
+            <p-button label="Save" (click)="clickUpdatePerson(1)"/>
+        } @else {
+            <p-button label="Delete" severity="danger" (click)="clickUpdatePerson(2)"/>
+            <p-button label="Update" severity="warning" (click)="clickUpdatePerson(3)"/>
+        }
+    </div>
+</form>
+</p-dialog>

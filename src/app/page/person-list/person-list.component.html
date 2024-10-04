@@ -5,9 +5,10 @@
     <hr class="p-divider-horizontal">
     <div class="person-list">
         @for (person of people; track person) {
-            <app-person [person]="person"></app-person>
+            <app-person [person]="person" (click)="clickUpdatePerson(person)"></app-person>
         }
     </div>
+    <p-button icon="pi pi-plus" severity="success" class="add-button" (click)="clickAddPerson()"/>
     <p-paginator
         (onPageChange)="onPageChange($event)"
         [first]="0"
@@ -17,4 +18,6 @@
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"/>
 </div>
+
+<app-edit-dialog [person]="person!" [visible]="visible" (changeEditData)="changeEditData($event)"/>
 

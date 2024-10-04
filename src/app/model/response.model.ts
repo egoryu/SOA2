@@ -8,3 +8,7 @@ export class PeopleResponseModel {
     public data!: PersonModel[];
     public total!: number;
 }
+
+export class EnumResponseModel {
+    public data!: string[];
+}

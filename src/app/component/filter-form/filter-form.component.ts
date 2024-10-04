@@ -4,15 +4,11 @@ import {DropdownModule} from 'primeng/dropdown';
 import {person} from '../../consts';
 import {InputTextModule} from 'primeng/inputtext';
 import {Button} from 'primeng/button';
-import {FilterParams, SearchParams, SortParams} from '../../model/filter.model';
+import {Filter, FilterParams, SearchParams, SortParams} from '../../model/filter.model';
 import {PersonModel} from '../../model/person.model';
 import {ChipModule} from 'primeng/chip';
 import {NgForOf} from '@angular/common';
 
-interface Filter {
-    name: string,
-    value: string
-}
 @Component({
   selector: 'app-filter-form',
   standalone: true,
