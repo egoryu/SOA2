@@ -7,19 +7,22 @@ import {person} from '../../consts';
 import {FilterFormComponent} from '../../component/filter-form/filter-form.component';
 import {PeopleResponseModel} from '../../model/response.model';
 import {FilterParams} from '../../model/filter.model';
+import {PaginatorModule, PaginatorState} from 'primeng/paginator';
 
 @Component({
     selector: 'app-person-list',
     standalone: true,
     imports: [
         PersonComponent,
-        FilterFormComponent
+        FilterFormComponent,
+        PaginatorModule
     ],
     templateUrl: './person-list.component.html',
     styleUrl: './person-list.component.scss'
 })
 export class PersonListComponent implements OnInit {
     public people?: PersonModel[];
+    public total = 0;
 
     private filters: FilterParams = {offset: 0, limit: 10};
 
@@ -54,12 +57,19 @@ export class PersonListComponent implements OnInit {
             .subscribe({
                 next: (response: PeopleResponseModel) => {
                     this.people = response.data;
+                    this.total = response.total;
                 }
             })
     }
 
     public changeFilter(filters: FilterParams): void {
         this.filters = {...this.filters, ...filters};
+        this.requestPeople();
+    }
+
+    public onPageChange(event: PaginatorState): void {
+        this.filters.limit = event.rows!;
+        this.filters.offset = event.page!;
         this.requestPeople();
     }
 }

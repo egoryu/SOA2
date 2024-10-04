@@ -8,5 +8,13 @@
             <app-person [person]="person"></app-person>
         }
     </div>
+    <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="0"
+        [rows]="10"
+        [totalRecords]="total"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"/>
 </div>
 
