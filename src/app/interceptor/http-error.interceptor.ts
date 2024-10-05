@@ -12,6 +12,13 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
         catchError((error: HttpErrorResponse) => {
             errorService.errors.next(error);
 
+            req = req.clone({
+                setHeaders: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
+
             return EMPTY;
         })
     );

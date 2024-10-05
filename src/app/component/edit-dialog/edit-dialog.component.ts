@@ -34,12 +34,12 @@ export class EditDialogComponent implements OnChanges {
 
     public personForm = this.fb.group({
         id: `${this.person?.id || ''}`,
-        name: `${this.person?.name || ''}`,
+        name: [`${this.person?.name || ''}`, [Validators.required]],
         creationDate: `${this.person?.creationDate || '' }`,
-        eyeColor: new FormControl<Color>(this.person?.eyeColor || ''),
-        hairColor: new FormControl<Color>(this.person?.hairColor || ''),
-        height: `${this.person?.height === undefined ? '' : this.person?.height}`,
-        nationality: new FormControl<Country | undefined>(this.person?.nationality || undefined),
+        eyeColor: new FormControl<Filter>({name: this.person?.eyeColor, value: this.person?.eyeColor} || {}, [Validators.required]),
+        hairColor: new FormControl<Filter>({name: this.person?.hairColor, value: this.person?.hairColor} || {}, [Validators.required]),
+        height: [`${this.person?.height === undefined ? '' : this.person?.height}`, [Validators.required]],
+        nationality: new FormControl<Filter>({name: this.person?.nationality!, value: this.person?.nationality!} || {}, [Validators.required]),
         "coordinates.x": `${this.person?.coordinates.x === undefined ? '' : this.person?.coordinates.x}`,
         "coordinates.y": `${this.person?.coordinates.y === undefined ? '' : this.person?.coordinates.y}`,
         "location.name": `${this.person?.location?.name || ''}`,
@@ -47,12 +47,16 @@ export class EditDialogComponent implements OnChanges {
         "location.y": `${this.person?.location?.y === undefined ? '' : this.person?.location?.y}`,
     });
 
-    public colorEnum: Filter[];
-    public countryEnum: Filter[];
+    public colorEnum?: Filter[];
+    public countryEnum?: Filter[];
 
     constructor(private fb: FormBuilder, private enumService: EnumService) {
-        this.countryEnum = this.enumService.countryEnum;
-        this.colorEnum = this.enumService.colorEnum;
+        this.enumService.countryEnum.subscribe({
+            next: data => this.countryEnum = data!
+        });
+        this.enumService.colorEnum.subscribe({
+            next: data => this.colorEnum = data!
+        });
     }
 
     public  ngOnChanges(changes: SimpleChanges): void {
@@ -61,10 +65,10 @@ export class EditDialogComponent implements OnChanges {
                 id: `${this.person?.id || ''}`,
                 name: [`${this.person?.name || ''}`, [Validators.required]],
                 creationDate: `${this.person?.creationDate || '' }`,
-                eyeColor: new FormControl<Color>(this.person?.eyeColor || '', [Validators.required]),
-                hairColor: new FormControl<Color>(this.person?.hairColor || '', [Validators.required]),
+                eyeColor: new FormControl<Filter>({name: this.person?.eyeColor, value: this.person?.eyeColor} || {}, [Validators.required]),
+                hairColor: new FormControl<Filter>({name: this.person?.hairColor, value: this.person?.hairColor} || {}, [Validators.required]),
                 height: [`${this.person?.height === undefined ? '' : this.person?.height}`, [Validators.required]],
-                nationality: new FormControl<Country | undefined>(this.person?.nationality || undefined, [Validators.required]),
+                nationality: new FormControl<Filter>({name: this.person?.nationality!, value: this.person?.nationality!} || {}, [Validators.required]),
                 "coordinates.x": `${this.person?.coordinates.x === undefined ? '' : this.person?.coordinates.x}`,
                 "coordinates.y": `${this.person?.coordinates.y === undefined ? '' : this.person?.coordinates.y}`,
                 "location.name": `${this.person?.location?.name || ''}`,
@@ -82,10 +86,10 @@ export class EditDialogComponent implements OnChanges {
             id: Number.parseFloat(this.personForm.controls.id.value!),
             name: this.personForm.controls.name.value!,
             creationDate: this.personForm.controls.creationDate.value!,
-            eyeColor: this.personForm.controls.eyeColor.value as Color,
-            hairColor: this.personForm.controls.hairColor.value as Color,
+            eyeColor: this.personForm.controls.eyeColor.value?.value as Color,
+            hairColor: this.personForm.controls.hairColor.value?.value as Color,
             height: Number.parseFloat(this.personForm.controls.height.value!),
-            nationality: this.personForm.controls.nationality.value as Country,
+            nationality: this.personForm.controls["nationality"].value?.value as Country,
             coordinates: {
                 x: Number.parseFloat(this.personForm.controls["coordinates.x"].value!),
                 y: Number.parseFloat(this.personForm.controls["coordinates.y"].value!)

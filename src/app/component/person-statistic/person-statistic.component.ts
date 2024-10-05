@@ -43,13 +43,17 @@ export class PersonStatisticComponent {
         hairColor: new FormControl<Color | null>(null, [Validators.required]),
         nationality: new FormControl<Country | null>(null, [Validators.required])
     })
-    public colorEnum: Filter[];
-    public countryEnum: Filter[];
+    public colorEnum?: Filter[];
+    public countryEnum?: Filter[];
     public resultDemography?: number;
 
     constructor(private fb: FormBuilder, private personService: PersonService, private demographyService: DemographyService, private enumService: EnumService) {
-        this.countryEnum = this.enumService.countryEnum;
-        this.colorEnum = this.enumService.colorEnum;
+        this.enumService.countryEnum.subscribe({
+            next: data => this.countryEnum = data!
+        });
+        this.enumService.colorEnum.subscribe({
+            next: data => this.colorEnum = data!
+        });
     }
 
     public clickResolveHeight() {
