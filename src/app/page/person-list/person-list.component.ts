@@ -51,7 +51,7 @@ export class PersonListComponent implements OnInit {
     public ngOnInit(): void {
         this.requestPeople();
         this.errorService.errors.subscribe({
-            next: error => this.messageService.add({ severity: 'error', summary: 'Error', detail: error?.message, life: 7000 })
+            next: error => this.messageService.add({ severity: 'error', summary: `Error (${error?.status})`, detail: (error?.error.message ? error?.error.messag : error?.statusText), life: 7000 })
         })
     }
 
