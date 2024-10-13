@@ -6,7 +6,7 @@
     }
     <p-button label="Resolve" [disabled]="heightForm.invalid && heightForm.controls['mode'].value?.value === 'count'" (click)="clickResolveHeight()"/>
     @if (result) {
-        <span>Result of resolve: {{result}}{{heightForm.controls['mode'].value?.value === 'count' ? 'чел.' : 'м'}}</span>
+        <span>Result of resolve: {{result}}{{heightForm.controls['mode'].value?.value === 'count' ? 'чел.' : 'м.'}}</span>
     }
 </form>
 
