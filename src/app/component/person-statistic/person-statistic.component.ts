@@ -11,7 +11,7 @@ import {EnumService} from '../../service/enum.service';
 import {Color, Country} from '../../model/person.model';
 import {ChartModule} from 'primeng/chart';
 import {MultiSelectModule} from 'primeng/multiselect';
-import {EMPTY, filter, forkJoin} from 'rxjs';
+import {EMPTY, forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-person-statistic',
