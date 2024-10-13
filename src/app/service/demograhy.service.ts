@@ -13,16 +13,15 @@ export class DemographyService {
     }
 
     public getHairColorPercentage$(hairColor: Color): Observable<CountResponseModel> {
-        return of({value: 20});
-        /*return this.http.get<CountResponseModel>(`${SERVER_DEMOGRAPHY_URL}/hair-color/${hairColor}/percentage`).pipe(
+        return this.http.get<CountResponseModel>(`${SERVER_DEMOGRAPHY_URL}/hair-color/${hairColor}/percentage`).pipe(
             share()
-        )*/
+        )
     }
 
     public getNationalityPeopleCountByHairColor$(nationality: Country, hairColor: Color): Observable<CountResponseModel> {
-        return of({value: 30});
-        /*return this.http.get<CountResponseModel>(`${SERVER_DEMOGRAPHY_URL}/nationality/${nationality}/hair-color`, {params: {"hair-color": hairColor}}).pipe(
+        return this.http.get<CountResponseModel>(`${SERVER_DEMOGRAPHY_URL}/nationality/${nationality}/hair-color`, {params: {"hair-color": hairColor}}).pipe(
             share()
-        )*/
+        )
     }
 }
+
