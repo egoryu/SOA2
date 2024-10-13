@@ -21,6 +21,7 @@
     <hr class="p-divider-horizontal">
     <app-person-statistic/>
 </div>
+
 <p-toast [breakpoints]="{ '3000px': { width: '100%', right: '0', left: '0' } }"/>
 <app-edit-dialog [person]="person!" [visible]="visible" (changeEditData)="changeEditData($event)"/>
 

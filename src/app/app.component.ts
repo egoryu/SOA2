@@ -7,12 +7,11 @@ import {Subject, takeUntil} from 'rxjs';
 import {EnumResponseModel} from './model/response.model';
 import {Filter} from './model/filter.model';
 import {Router, RouterOutlet} from '@angular/router';
-import {MainPageComponent} from './page/main-page/main-page.component';
 
 @Component({
 	selector: 'app-root',
 	standalone: true,
-    imports: [CommonModule, PersonListComponent, MainPageComponent, RouterOutlet],
+    imports: [CommonModule, PersonListComponent, RouterOutlet],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss'
 })

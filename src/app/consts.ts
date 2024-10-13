@@ -1,8 +1,8 @@
 import {Color, Country, PersonModel} from './model/person.model';
 
-export const SERVER_PEOPLE_URL = 'https://localhost:8081/people'
-export const SERVER_DEMOGRAPHY_URL = 'https://localhost:8081/demography'
-export const SERVER_URL = 'https://localhost:8081'
+export const SERVER_PEOPLE_URL = 'https://virtserver.swaggerhub.com/EgorNikitin/SOA1/1.0.0/people'
+export const SERVER_DEMOGRAPHY_URL = 'https://virtserver.swaggerhub.com/EgorNikitin/SOA1-demography/1.0.0/demography'
+export const SERVER_URL = 'https://virtserver.swaggerhub.com/EgorNikitin/SOA1/1.0.0'
 //export const SERVER_PEOPLE_URL = 'https://virtserver.swaggerhub.com/EgorNikitin/SOA1/1.0.0/people'
 
 export const person: PersonModel = {
