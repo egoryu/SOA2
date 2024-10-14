@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import {DropdownModule} from 'primeng/dropdown';
-import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {
+    AbstractControl,
+    FormBuilder,
+    FormControl,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidatorFn,
+    Validators
+} from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 import {Filter} from '../../model/filter.model';
 import {Button} from 'primeng/button';
@@ -12,6 +20,7 @@ import {Color, Country} from '../../model/person.model';
 import {ChartModule} from 'primeng/chart';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {EMPTY, forkJoin} from 'rxjs';
+import {numberValidator} from '../../consts';
 
 @Component({
   selector: 'app-person-statistic',
@@ -35,7 +44,7 @@ export class PersonStatisticComponent {
     ];
     public heightForm = this.fb.group({
         mode: new FormControl<Filter>(this.modes[0], [Validators.required]),
-        height: ['', [Validators.required]],
+        height: ['', [Validators.required, numberValidator()]],
     })
     public result?: number;
 

@@ -7,7 +7,7 @@ import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {Filter} from '../../model/filter.model';
 import {EnumService} from '../../service/enum.service';
-import {person} from '../../consts';
+import {numberValidator, person} from '../../consts';
 
 export interface EditData {
     data: PersonModel,
@@ -38,13 +38,13 @@ export class EditDialogComponent implements OnChanges {
         creationDate: `${this.person?.creationDate || '' }`,
         eyeColor: new FormControl<Filter>({name: this.person?.eyeColor, value: this.person?.eyeColor} || {}, [Validators.required]),
         hairColor: new FormControl<Filter>({name: this.person?.hairColor, value: this.person?.hairColor} || {}, [Validators.required]),
-        height: [`${this.person?.height === undefined ? '' : this.person?.height}`, [Validators.required]],
+        height: [`${this.person?.height === undefined ? '' : this.person?.height}`, [Validators.required, numberValidator()]],
         nationality: new FormControl<Filter>({name: this.person?.nationality!, value: this.person?.nationality!} || {}, [Validators.required]),
-        "coordinates.x": `${this.person?.coordinates.x === undefined ? '' : this.person?.coordinates.x}`,
-        "coordinates.y": `${this.person?.coordinates.y === undefined ? '' : this.person?.coordinates.y}`,
+        "coordinates.x": [`${this.person?.coordinates.x === undefined ? '' : this.person?.coordinates.x}`, [numberValidator()]],
+        "coordinates.y": [`${this.person?.coordinates.y === undefined ? '' : this.person?.coordinates.y}`, [numberValidator()]],
         "location.name": `${this.person?.location?.name || ''}`,
-        "location.x": `${this.person?.location?.x === undefined ? '' : this.person?.location?.x}`,
-        "location.y": `${this.person?.location?.y === undefined ? '' : this.person?.location?.y}`,
+        "location.x": [`${this.person?.location?.x === undefined ? '' : this.person?.location?.x}`, [numberValidator()]],
+        "location.y": [`${this.person?.location?.y === undefined ? '' : this.person?.location?.y}`, [numberValidator()]],
     });
 
     public colorEnum?: Filter[];
@@ -67,13 +67,13 @@ export class EditDialogComponent implements OnChanges {
                 creationDate: `${this.person?.creationDate || '' }`,
                 eyeColor: new FormControl<Filter>({name: this.person?.eyeColor, value: this.person?.eyeColor} || {}, [Validators.required]),
                 hairColor: new FormControl<Filter>({name: this.person?.hairColor, value: this.person?.hairColor} || {}, [Validators.required]),
-                height: [`${this.person?.height === undefined ? '' : this.person?.height}`, [Validators.required]],
+                height: [`${this.person?.height === undefined ? '' : this.person?.height}`, [Validators.required, numberValidator()]],
                 nationality: new FormControl<Filter>({name: this.person?.nationality!, value: this.person?.nationality!} || {}, [Validators.required]),
-                "coordinates.x": `${this.person?.coordinates.x === undefined ? '' : this.person?.coordinates.x}`,
-                "coordinates.y": `${this.person?.coordinates.y === undefined ? '' : this.person?.coordinates.y}`,
+                "coordinates.x": [`${this.person?.coordinates.x === undefined ? '' : this.person?.coordinates.x}`, [numberValidator()]],
+                "coordinates.y": [`${this.person?.coordinates.y === undefined ? '' : this.person?.coordinates.y}`, [numberValidator()]],
                 "location.name": `${this.person?.location?.name || ''}`,
-                "location.x": `${this.person?.location?.x === undefined ? '' : this.person?.location?.x}`,
-                "location.y": `${this.person?.location?.y === undefined ? '' : this.person?.location?.y}`,
+                "location.x": [`${this.person?.location?.x === undefined ? '' : this.person?.location?.x}`, [numberValidator()]],
+                "location.y": [`${this.person?.location?.y === undefined ? '' : this.person?.location?.y}`, [numberValidator()]],
             });
 
             this.personForm.controls.id.disable();
