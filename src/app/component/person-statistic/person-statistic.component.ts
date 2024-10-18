@@ -54,8 +54,8 @@ export class PersonStatisticComponent {
     ];
     public demographyForm = this.fb.group({
         mode: new FormControl<Filter>(this.demographyModes[0], [Validators.required]),
-        hairColor: new FormControl<Color | null>(null, [Validators.required]),
-        nationality: new FormControl<Country | null>(null, [Validators.required])
+        hairColor: new FormControl<Filter | null>(null, [Validators.required]),
+        nationality: new FormControl<Filter | null>(null, [Validators.required])
     })
     public colorEnum?: Filter[];
     public countryEnum?: Filter[];
@@ -90,12 +90,12 @@ export class PersonStatisticComponent {
 
     public clickResolveDemography(): void {
         if (this.demographyForm.controls['mode'].value?.value === 'count') {
-            this.demographyService.getNationalityPeopleCountByHairColor$(this.demographyForm.controls.nationality.value!, this.demographyForm.controls.hairColor.value!)
+            this.demographyService.getNationalityPeopleCountByHairColor$(this.demographyForm.controls.nationality.value?.value! as Country, this.demographyForm.controls.hairColor.value?.value! as Color)
                 .subscribe({
                     next: (data: CountResponseModel) => this.resultDemography = data.value
                 })
         } else {
-            this.demographyService.getHairColorPercentage$(this.demographyForm.controls.hairColor.value!)
+            this.demographyService.getHairColorPercentage$(this.demographyForm.controls.hairColor.value?.value! as Color)
                 .subscribe({
                     next: (data: CountResponseModel) => this.resultDemography = data.value
                 })

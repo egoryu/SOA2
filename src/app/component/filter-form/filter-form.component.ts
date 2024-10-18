@@ -55,7 +55,7 @@ export class FilterFormComponent {
 
     public filterForm = this.fb.group({
         param: new FormControl<Filter | null>(this.filters[0], [Validators.required]),
-        text: new FormControl<string>('', [Validators.required, Validators.maxLength(255), Validators.pattern('[\\w-]*')]),
+        text: new FormControl<string>('', [Validators.required, Validators.maxLength(255), Validators.pattern('[\\w-.]*')]),
         mode: new FormControl<Filter>(this.modes[0], [Validators.required])
     });
     public sortForm = this.fb.group({

@@ -39,7 +39,7 @@ export class PersonListComponent implements OnInit {
     public visible: boolean = false;
     public person?: PersonModel;
 
-    private filters: FilterParams = {offset: 0, limit: 10};
+    private filters: FilterParams = {offset: 0, limit: 9};
 
     constructor(
         private personService: PersonService,
@@ -115,13 +115,19 @@ export class PersonListComponent implements OnInit {
                     });
                 return;
             case 2:
-                this.personService.deletePerson$(data.data.id).subscribe(noop);
+                this.personService.deletePerson$(data.data.id).subscribe({
+                    next: () => this.requestPeople()
+                });
                 return;
             case 3:
                 if (!data.data.location || !data.data.location.x || !data.data.location.y || !data.data.location.name || !data.data.coordinates.x || !data.data.coordinates.y)
-                    this.personService.patchPerson$(data.data.id, data.data).subscribe(noop);
+                    this.personService.patchPerson$(data.data.id, data.data).subscribe({
+                        next: () => this.requestPeople()
+                    });
                 else
-                    this.personService.putPerson$(data.data.id, data.data).subscribe(noop);
+                    this.personService.putPerson$(data.data.id, data.data).subscribe({
+                        next: () => this.requestPeople()
+                    });
                 return;
         }
     }
