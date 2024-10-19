@@ -3,7 +3,6 @@ import {PersonModel} from '../../model/person.model';
 import {PersonService} from '../../service/person.service';
 import {HttpParams} from '@angular/common/http';
 import {PersonComponent} from '../../component/person/person.component';
-import {person} from '../../consts';
 import {FilterFormComponent} from '../../component/filter-form/filter-form.component';
 import {PeopleResponseModel} from '../../model/response.model';
 import {FilterParams} from '../../model/filter.model';

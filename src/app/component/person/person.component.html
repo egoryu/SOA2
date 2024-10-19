@@ -1,32 +1,32 @@
 <div class="person-info">
-    <h2 class="person-name">{{person?.name}} ({{person?.id}})</h2>
+    <h2 class="person-name limit" tooltipPosition="top" [pTooltip]="getHeader()">({{person?.id}}) {{person?.name}} </h2>
     <h3 class="section-title">Person data</h3>
     <div class="info-item">
         <span class="label">Creation date:</span>
-        <span class="value">{{person?.creationDate || '&mdash;'}}</span>
+        <span class="value limit" tooltipPosition="top" [pTooltip]="getCreationDate()">{{person?.creationDate || '&mdash;'}}</span>
     </div>
     <div class="info-item">
         <span class="label">Eye color:</span>
-        <span class="value">{{person?.eyeColor || '&mdash;'}}</span>
+        <span class="value limit" tooltipPosition="top" [pTooltip]="person?.eyeColor ? person?.eyeColor : '-'">{{person?.eyeColor || '&mdash;'}}</span>
     </div>
     <div class="info-item">
         <span class="label">Hair color:</span>
-        <span class="value">{{person?.hairColor || '&mdash;'}}</span>
+        <span class="value limit" tooltipPosition="top" [pTooltip]="person?.hairColor ? person?.hairColor : '-'">{{person?.hairColor || '&mdash;'}}</span>
     </div>
     <div class="info-item">
         <span class="label">Height:</span>
-        <span class="value">{{person?.height}}</span>
+        <span class="value limit" tooltipPosition="top" [pTooltip]="person?.height?.toString()">{{person?.height}}</span>
     </div>
     <div class="info-item">
         <span class="label">Nationality:</span>
-        <span class="value">{{person?.nationality || '&mdash;'}}</span>
+        <span class="value limit" tooltipPosition="top" [pTooltip]="person?.nationality ? person?.nationality : '-'">{{person?.nationality || '&mdash;'}}</span>
     </div>
     <div class="info-item">
         <span class="label">Person coordinates:</span>
-        <span class="value"> x - {{person?.coordinates?.x}}, y - {{person?.coordinates?.y}}</span>
+        <span class="value limit" tooltipPosition="top" [pTooltip]="getCoordinates()"> x - {{person?.coordinates?.x}}, y - {{person?.coordinates?.y}}</span>
     </div>
     <div class="info-item">
-        <span class="label">Location ({{person?.location?.name || 'no data'}}):</span>
-        <span class="value"> x - {{person?.location?.x}}, y - {{person?.location?.y}}</span>
+        <span class="label" tooltipPosition="top" [pTooltip]="person?.location?.name ? person?.location?.name : 'no data'">Location ({{person?.location?.name || 'no data'}}):</span>
+        <span class="value limit" tooltipPosition="top" [pTooltip]="getLocation()"> x - {{person?.location?.x}}, y - {{person?.location?.y}}</span>
     </div>
 </div>
